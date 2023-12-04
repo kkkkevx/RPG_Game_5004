@@ -41,5 +41,11 @@ public class HandGear extends AbstractGear {
         // Create and return a new HandGear instance
         return new HandGear(newPrefix, getName(), newAttackStat);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " -- attack: " + getAttackStat() +
+                ", defense: " + getDefenseStat();
+    }
 }
 

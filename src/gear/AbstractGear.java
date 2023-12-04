@@ -126,11 +126,6 @@ public abstract class AbstractGear implements Gear {
      */
     @Override
     public String toString() {
-        return "gear.AbstractGear{" +
-                "prefix='" + prefix + '\'' +
-                ", name='" + name + '\'' +
-                ", attackStat=" + attackStat +
-                ", defenseStat=" + defenseStat +
-                '}';
+        return prefix + " " + name;
     }
 }

@@ -44,5 +44,11 @@ public class FootGear extends AbstractGear {
         // Create and return a new FootGear instance
         return new FootGear(newPrefix, getName(), newAttackStat, newDefenseStat);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " -- attack: " + getAttackStat() +
+                ", defense: " + getDefenseStat();
+    }
 }
 

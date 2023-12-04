@@ -41,4 +41,10 @@ public class HeadGear extends AbstractGear {
         // Create and return a new HeadGear instance
         return new HeadGear(newPrefix, getName(), newDefenseStat);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " -- attack: " + getAttackStat() +
+                ", defense: " + getDefenseStat();
+    }
 }
