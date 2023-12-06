@@ -1,3 +1,5 @@
+package battle;
+
 import gear.*;
 import character.*;
 
@@ -5,18 +7,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The Battle class represents a turn-based battle between two RPG characters.
+ * During the battle, characters take turns choosing items from a list of available items,
+ * and the winner is determined based on the calculated damage at the end of the battle.
+ */
 public class Battle {
 
+    // RPGCharacter1 and RPGCharacter2 represent the two characters in the battle.
     private final RPGCharacter RPGCharacter1;
     private final RPGCharacter RPGCharacter2;
+
+    // availableItems is the list of items characters can choose from during the battle.
     private final List<Gear> availableItems;
 
+    /**
+     * Constructs a Battle object with two RPG characters and a list of available items.
+     *
+     * @param RPGCharacter1 The first RPG character participating in the battle.
+     * @param RPGCharacter2 The second RPG character participating in the battle.
+     * @param availableItems The list of available items that characters can choose from during the battle.
+     */
     public Battle(RPGCharacter RPGCharacter1, RPGCharacter RPGCharacter2, List<Gear> availableItems) {
         this.RPGCharacter1 = RPGCharacter1;
         this.RPGCharacter2 = RPGCharacter2;
         this.availableItems = new ArrayList<>(availableItems);
     }
 
+    /**
+     * Starts the battle, where characters take turns choosing items for a specified number of turns.
+     * After the turns, the winner is determined based on the calculated damage.
+     */
     public void startBattle() {
         for (int turn = 1; turn <= 10; turn++) {
             System.out.println("Turn " + turn + ":");
@@ -35,7 +56,7 @@ public class Battle {
         System.out.println("Player 2 has " + RPGCharacter2.getTotalAttackStat() +
                 " attack and " + RPGCharacter2.getTotalDefenseStat() + " defense.");
 
-        System.out.println("Battle ends with " + RPGCharacter1.getName() + " having " + damage1 + " units of damage and " +
+        System.out.println("Battle.Battle ends with " + RPGCharacter1.getName() + " having " + damage1 + " units of damage and " +
                 RPGCharacter2.getName() + " having " + damage2 + " units of damage.");
 
         if (damage1 > damage2) {
@@ -47,6 +68,11 @@ public class Battle {
         }
     }
 
+    /**
+     * Represents a single turn in which a character chooses an item to equip.
+     *
+     * @param RPGCharacter The RPG character whose turn it is to pick an item.
+     */
     private void pickItem(RPGCharacter RPGCharacter) {
         // Sort available items based on the specified rules
         sortItems(RPGCharacter);
@@ -64,6 +90,12 @@ public class Battle {
         availableItems.remove(chosenItem);
     }
 
+    /**
+     * Sorts the available items based on specified rules, prioritizing the type of items
+     * characters have available slots for and considering attack and defense strengths.
+     *
+     * @param character The RPG character for whom the items are being sorted.
+     */
     private void sortItems(RPGCharacter character) {
         availableItems.sort((item1, item2) -> {
             if (character.hasHeadGearSlot() && item1 instanceof HeadGear && item2 instanceof HeadGear) {
@@ -79,6 +111,14 @@ public class Battle {
         });
     }
 
+    /**
+     * Compares two items based on attack strength, defense strength, and randomness in case of a tie.
+     *
+     * @param item1 The first item to compare.
+     * @param item2 The second item to compare.
+     * @return A negative integer, zero, or a positive integer as the first item is less than, equal to,
+     *         or greater than the second item, respectively.
+     */
     private int compareItems(Gear item1, Gear item2) {
         // Compare items based on attack strength, defense strength, and then randomly
         int attackComparison = Integer.compare(item2.getAttackStat(), item1.getAttackStat());
@@ -95,38 +135,17 @@ public class Battle {
         return new Random().nextBoolean() ? -1 : 1;
     }
 
+    /**
+     * Calculates the damage inflicted by an attacker on a defender based on their stats.
+     *
+     * @param attacker The attacking RPG character.
+     * @param defender The defending RPG character.
+     * @return The calculated damage inflicted by the attacker on the defender.
+     */
     private int calculateDamage(RPGCharacter attacker, RPGCharacter defender) {
         int damage = attacker.getTotalAttackStat() - defender.getTotalDefenseStat();
+        // Ensure damage is non-negative
         return Math.max(0, damage);
     }
-
-    public static void main(String[] args) {
-        // Create characters
-        RPGCharacter player1 = new RPGCharacterImpl("Player 1", 2, 2);
-        RPGCharacter player2 = new RPGCharacterImpl("Player 2", 2, 2);
-
-        // Create a list of available items
-        List<Gear> availableItems = new ArrayList<>();
-        Random rand = new Random();
-        for (int i = 0; i < 5; i++) {
-            availableItems.add(new HeadGear("adj" + (i + 1), "Helmet", rand.nextInt(10)));
-            availableItems.add(new HandGear("adj" + (i + 6), "Glove", rand.nextInt(10)));
-            availableItems.add(new FootGear("adj" + (i + 11), "Boot", rand.nextInt(10), rand.nextInt(10)));
-        }
-
-        for(int i = 16; i < 21; i++) {
-            if (rand.nextInt(3) == 0) {
-                availableItems.add(new HeadGear("adj" + (i), "Helmet", rand.nextInt(10)));
-            } else if (rand.nextInt(3) == 1) {
-                availableItems.add(new HandGear("adj" + (i), "Glove", rand.nextInt(10)));
-            } else {
-                availableItems.add(new FootGear("adj" + (i), "Boot", rand.nextInt(10), rand.nextInt(10)));
-            }
-        }
-
-        // Create a BattleDriver instance and start the battle
-        Battle battleDriver = new Battle(player1, player2, availableItems);
-        battleDriver.startBattle();
-
-    }
 }
+

@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="245c1979-9808-491e-9717-5c8ba9c14ce6" name="Changes" comment="update character and gear with better tostring method">
-      <change afterPath="$PROJECT_DIR$/src/Battle.java" afterDir="false" />
+    <list default="true" id="245c1979-9808-491e-9717-5c8ba9c14ce6" name="Changes" comment="change the character name and complete driver class">
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/BattleTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/character/CharacterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/CharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/RPGCharacterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battle/Battle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/character/RPGCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/character/RPGCharacterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/RPGCharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/RPGCharacterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +52,45 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="RPGCharacterTest.compareTo_Player2Wins" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RPG_Game_5004" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RPGCharacterTest" />
+      <option name="METHOD_NAME" value="compareTo_Player2Wins" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RPGCharacterTest.equipCombineFootGear_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RPG_Game_5004" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RPGCharacterTest" />
+      <option name="METHOD_NAME" value="equipCombineFootGear_Success" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RPGCharacterTest.equipCombineHandGear_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RPG_Game_5004" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RPGCharacterTest" />
+      <option name="METHOD_NAME" value="equipCombineHandGear_Success" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RPGCharacterTest.compareTo_Player2Wins" />
+        <item itemvalue="JUnit.RPGCharacterTest.equipCombineHandGear_Success" />
+        <item itemvalue="JUnit.RPGCharacterTest.equipCombineFootGear_Success" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -83,23 +124,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701843185115</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="change the character name and complete driver class">
+      <option name="closed" value="true" />
+      <created>1701846129431</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701846129431</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="built gear and character" />
     <MESSAGE value="update character and gear with better tostring method" />
-    <option name="LAST_COMMIT_MESSAGE" value="update character and gear with better tostring method" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/character/RPGCharacterImpl.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="change the character name and complete driver class" />
+    <option name="LAST_COMMIT_MESSAGE" value="change the character name and complete driver class" />
   </component>
 </project>

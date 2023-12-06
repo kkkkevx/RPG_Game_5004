@@ -2,6 +2,8 @@ package character;
 
 import gear.*;
 
+import java.util.ArrayList;
+
 public interface RPGCharacter {
     void equip(Gear equipment);
 
@@ -19,5 +21,7 @@ public interface RPGCharacter {
     public int compareTo(RPGCharacter player);
 
     String toString();
-
+    ArrayList<FootGear> getEquippedFootGears();
+    ArrayList<HandGear> getEquippedHandGears();
+    HeadGear getEquippedHeadGear();
 }
