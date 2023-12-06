@@ -2,7 +2,7 @@ package character;
 
 import gear.*;
 
-public interface Character {
+public interface RPGCharacter {
     void equip(Gear equipment);
 
     int getBaseAttackStat();
@@ -16,7 +16,7 @@ public interface Character {
     boolean hasHeadGearSlot();
     boolean hasFootGearSlot();
 
-    public int compareTo(Character player);
+    public int compareTo(RPGCharacter player);
 
     String toString();
 

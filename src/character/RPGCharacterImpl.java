@@ -3,11 +3,10 @@ package character;
 import gear.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class CharacterImpl implements Character {
+public class RPGCharacterImpl implements RPGCharacter {
     public static void main(String[] args) {
-        Character player1 = new CharacterImpl("Kan", 2, 2);
+        RPGCharacter player1 = new RPGCharacterImpl("Kan", 2, 2);
         HeadGear head = new HeadGear("wudi", "tou", 2);
         HandGear hand1 = new HandGear("wudi", "shoutao", 2);
         HandGear hand2 = new HandGear("wudi", "shoutao2", 2);
@@ -16,7 +15,7 @@ public class CharacterImpl implements Character {
         player1.equip(hand1);
         player1.equip(hand2);
         player1.equip(hand3);
-        Character player2 = new CharacterImpl("Kan2", 2, 2);
+        RPGCharacter player2 = new RPGCharacterImpl("Kan2", 2, 2);
         player2.equip(head);
         player2.equip(hand1);
         player2.equip(hand2);
@@ -37,7 +36,7 @@ public class CharacterImpl implements Character {
     ArrayList<HandGear> equippedHandGears;
     ArrayList<FootGear> equippedFootGears;
 
-    public CharacterImpl(String name, int baseAttackStat, int baseDefenseStat) {
+    public RPGCharacterImpl(String name, int baseAttackStat, int baseDefenseStat) {
         this.name = name;
         this.baseAttackStat = baseAttackStat;
         this.baseDefenseStat = baseDefenseStat;
@@ -135,7 +134,7 @@ public class CharacterImpl implements Character {
     }
 
     @Override
-    public int compareTo(Character player) {
+    public int compareTo(RPGCharacter player) {
         int dmgMade = this.totalAttackStat - player.getTotalDefenseStat();
         int dmgTaken = player.getTotalAttackStat() - this.totalDefenseStat;
         return Integer.compare(dmgMade,dmgTaken);
