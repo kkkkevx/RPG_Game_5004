@@ -5,7 +5,7 @@ import gear.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CharacterImpl implements Character, Comparable<Character> {
+public class CharacterImpl implements Character {
     public static void main(String[] args) {
         Character player1 = new CharacterImpl("Kan", 2, 2);
         HeadGear head = new HeadGear("wudi", "tou", 2);
@@ -15,8 +15,12 @@ public class CharacterImpl implements Character, Comparable<Character> {
         player1.equip(head);
         player1.equip(hand1);
         player1.equip(hand2);
-        player1.equip(hand2);
-        System.out.println(player1);
+        player1.equip(hand3);
+        Character player2 = new CharacterImpl("Kan2", 2, 2);
+        player2.equip(head);
+        player2.equip(hand1);
+        player2.equip(hand2);
+        System.out.println(player1.compareTo(player2)); //1
     }
 
     private static final int Max_Hand_Gear_Slot = 2;
@@ -94,6 +98,16 @@ public class CharacterImpl implements Character, Comparable<Character> {
         return baseDefenseStat;
     }
 
+    @Override
+    public int getTotalAttackStat() {
+        return totalAttackStat;
+    }
+
+    @Override
+    public int getTotalDefenseStat() {
+        return totalDefenseStat;
+    }
+
 
     @Override
     public String getName() {
@@ -121,8 +135,10 @@ public class CharacterImpl implements Character, Comparable<Character> {
     }
 
     @Override
-    public int compareTo(Character o) {
-        return 0;
+    public int compareTo(Character player) {
+        int dmgMade = this.totalAttackStat - player.getTotalDefenseStat();
+        int dmgTaken = player.getTotalAttackStat() - this.totalDefenseStat;
+        return Integer.compare(dmgMade,dmgTaken);
     }
 
     public String toString() {

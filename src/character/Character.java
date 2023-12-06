@@ -8,11 +8,15 @@ public interface Character {
     int getBaseAttackStat();
 
     int getBaseDefenseStat();
+    int getTotalAttackStat();
+    int getTotalDefenseStat();
     String getName();
     void setName(String name);
     boolean hasHandGearSlot();
     boolean hasHeadGearSlot();
     boolean hasFootGearSlot();
+
+    public int compareTo(Character player);
 
     String toString();
 
