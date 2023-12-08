@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * The Battle class represents a turn-based battle between two RPG characters.
+ * The battle.Battle class represents a turn-based battle between two RPG characters.
  * During the battle, characters take turns choosing items from a list of available items,
  * and the winner is determined based on the calculated damage at the end of the battle.
  */
@@ -22,13 +22,16 @@ public class Battle {
     private final List<Gear> availableItems;
 
     /**
-     * Constructs a Battle object with two RPG characters and a list of available items.
+     * Constructs a battle.Battle object with two RPG characters and a list of available items.
      *
      * @param RPGCharacter1 The first RPG character participating in the battle.
      * @param RPGCharacter2 The second RPG character participating in the battle.
      * @param availableItems The list of available items that characters can choose from during the battle.
      */
     public Battle(RPGCharacter RPGCharacter1, RPGCharacter RPGCharacter2, List<Gear> availableItems) {
+        if (availableItems.size() != 20) {
+            throw new IllegalArgumentException("Item Error: Make sure you create enough items to pick up: 20 items");
+        }
         this.RPGCharacter1 = RPGCharacter1;
         this.RPGCharacter2 = RPGCharacter2;
         this.availableItems = new ArrayList<>(availableItems);
@@ -46,6 +49,8 @@ public class Battle {
             System.out.println();
         }
 
+
+
         // Determine the winner based on damage calculation
         int damage1 = calculateDamage(RPGCharacter1, RPGCharacter2);
         int damage2 = calculateDamage(RPGCharacter2, RPGCharacter1);
@@ -56,7 +61,7 @@ public class Battle {
         System.out.println("Player 2 has " + RPGCharacter2.getTotalAttackStat() +
                 " attack and " + RPGCharacter2.getTotalDefenseStat() + " defense.");
 
-        System.out.println("Battle.Battle ends with " + RPGCharacter1.getName() + " having " + damage1 + " units of damage and " +
+        System.out.println("Battle ends with " + RPGCharacter1.getName() + " having " + damage1 + " units of damage and " +
                 RPGCharacter2.getName() + " having " + damage2 + " units of damage.");
 
         if (damage1 > damage2) {
@@ -75,12 +80,11 @@ public class Battle {
      */
     private void pickItem(RPGCharacter RPGCharacter) {
         // Sort available items based on the specified rules
-        sortItems(RPGCharacter);
+        Gear chosenItem = chooseItem(RPGCharacter);
 
-        // Choose the first item from the sorted list
-        Gear chosenItem = availableItems.get(0);
-        System.out.println(RPGCharacter.getName() + " is picking up a piece of " + chosenItem.getClass().getSimpleName() +
-                ": " + chosenItem.getName() + " -- defense strength: " + chosenItem.getDefenseStat() +
+        System.out.println(RPGCharacter.getName() + " is picking up " + chosenItem.getClass().getSimpleName() +
+                ": " + chosenItem.getPrefix() + " " + chosenItem.getName() +
+                " -- defense strength: " + chosenItem.getDefenseStat() +
                 ", attack strength: " + chosenItem.getAttackStat());
 
         // Equip the chosen item to the character
@@ -90,49 +94,71 @@ public class Battle {
         availableItems.remove(chosenItem);
     }
 
-    /**
-     * Sorts the available items based on specified rules, prioritizing the type of items
-     * characters have available slots for and considering attack and defense strengths.
-     *
-     * @param character The RPG character for whom the items are being sorted.
-     */
-    private void sortItems(RPGCharacter character) {
-        availableItems.sort((item1, item2) -> {
-            if (character.hasHeadGearSlot() && item1 instanceof HeadGear && item2 instanceof HeadGear) {
-                return compareItems(item1, item2);
-            } else if (character.hasHandGearSlot() && item1 instanceof HandGear && item2 instanceof HandGear) {
-                return compareItems(item1, item2);
-            } else if (character.hasFootGearSlot() && item1 instanceof FootGear && item2 instanceof FootGear) {
-                return compareItems(item1, item2);
-            } else {
-                // If no specific slot available, compare items without considering slot preference
-                return compareItems(item1, item2);
+    public Gear chooseItem(RPGCharacter inChar) {
+
+
+
+        // Instantiate array lists to hold specific gear types
+        List<Gear> headGearList = new ArrayList<>();
+        List<Gear> handGearList = new ArrayList<>();
+        List<Gear> footGearList = new ArrayList<>();
+
+        // Parse through itemsList and copy gear to appropriate lists
+        for (Gear gear : availableItems) {
+            if (gear instanceof HeadGear) {
+                headGearList.add(gear);
             }
-        });
+            else if (gear instanceof HandGear) {
+                handGearList.add(gear);
+            }
+            else {
+                footGearList.add(gear);
+            }
+        }
+
+        // Instantiate new list from which gear will be chosen
+        List<Gear> candidatesList = new ArrayList<>();
+
+        // If char has open head, hand, or foot slot, add that type's list
+        // to the candidatesList
+
+        if (inChar.hasHeadGearSlot()) {
+            candidatesList.addAll(headGearList);
+        }
+
+        if (inChar.hasHandGearSlot()) {
+            candidatesList.addAll(handGearList);
+        }
+
+        if (inChar.hasFootGearSlot()) {
+            candidatesList.addAll(footGearList);
+        }
+
+        // If char has all slots already filled, add all items in itemsList to
+        // candidatesList
+        if (candidatesList.isEmpty()) {
+            candidatesList.addAll(availableItems);
+        }
+
+        // Find the gear with the best stats in the candidatesList
+        return findBestGear(candidatesList);
+
     }
 
-    /**
-     * Compares two items based on attack strength, defense strength, and randomness in case of a tie.
-     *
-     * @param item1 The first item to compare.
-     * @param item2 The second item to compare.
-     * @return A negative integer, zero, or a positive integer as the first item is less than, equal to,
-     *         or greater than the second item, respectively.
-     */
-    private int compareItems(Gear item1, Gear item2) {
-        // Compare items based on attack strength, defense strength, and then randomly
-        int attackComparison = Integer.compare(item2.getAttackStat(), item1.getAttackStat());
-        if (attackComparison != 0) {
-            return attackComparison;
+    /* -----------------------------------------------------------------------------
+     * Method   `findBestGear` determines which Gear obj in a list of Gear has the
+     *            highest stats, and that obj
+     * @param   'inList'      --    (List<Gear>)    the list of Gear to parse from
+     * @returns  None
+     * ----------------------------------------------------------------------------*/
+    private Gear findBestGear(List<Gear> inList) {
+        Gear maxStatsGear = inList.get(0);
+        for (Gear gear: inList) {
+            if (gear.compareTo(maxStatsGear) > 0) {
+                maxStatsGear = gear;
+            }
         }
-
-        int defenseComparison = Integer.compare(item2.getDefenseStat(), item1.getDefenseStat());
-        if (defenseComparison != 0) {
-            return defenseComparison;
-        }
-
-        // Randomly choose if there is still a tie
-        return new Random().nextBoolean() ? -1 : 1;
+        return maxStatsGear;
     }
 
     /**
@@ -147,5 +173,19 @@ public class Battle {
         // Ensure damage is non-negative
         return Math.max(0, damage);
     }
+
+    public int getWinner(int damage1, int damage2){
+        if (damage1 > damage2) {
+            System.out.println(RPGCharacter1.getName() + " wins!");
+            return 1;
+        } else if (damage2 > damage1) {
+            System.out.println(RPGCharacter2.getName() + " wins!");
+            return 2;
+        } else {
+            System.out.println("It's a tie!");
+            return 0;
+        }
+    }
+
 }
 

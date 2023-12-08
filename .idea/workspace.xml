@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="245c1979-9808-491e-9717-5c8ba9c14ce6" name="Changes" comment="change the character name and complete driver class">
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/BattleTest.java" afterDir="false" />
+    <list default="true" id="245c1979-9808-491e-9717-5c8ba9c14ce6" name="Changes" comment="finished the battle">
+      <change afterPath="$PROJECT_DIR$/res/5004_lab2_RPG_old.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battle/Battle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/battle/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battle/Battle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/character/RPGCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/character/RPGCharacterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gear/AbstractGear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gear/AbstractGear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gear/Gear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gear/Gear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BattleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BattleTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/RPGCharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/RPGCharacterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,35 +52,64 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zyyy\IdeaProjects\RPG_Game_5004\res" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="RPGCharacterTest.compareTo_Player2Wins" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BattleTest.testBattleResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RPG_Game_5004" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RPGCharacterTest" />
-      <option name="METHOD_NAME" value="compareTo_Player2Wins" />
+      <option name="MAIN_CLASS_NAME" value="BattleTest" />
+      <option name="METHOD_NAME" value="testBattleResult" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RPGCharacterTest.equipCombineFootGear_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BattleTest.testInvalidItemList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RPG_Game_5004" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RPGCharacterTest" />
-      <option name="METHOD_NAME" value="equipCombineFootGear_Success" />
+      <option name="MAIN_CLASS_NAME" value="BattleTest" />
+      <option name="METHOD_NAME" value="testInvalidItemList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RPGCharacterTest.equipCombineHandGear_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GearTest.testCombineHandGear" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RPG_Game_5004" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GearTest" />
+      <option name="METHOD_NAME" value="testCombineHandGear" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RPGCharacterTest.hasGearSlotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RPG_Game_5004" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="RPGCharacterTest" />
-      <option name="METHOD_NAME" value="equipCombineHandGear_Success" />
+      <option name="METHOD_NAME" value="hasGearSlotTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RPGCharacterTest.hasNoGearSlotTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RPG_Game_5004" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RPGCharacterTest" />
+      <option name="METHOD_NAME" value="hasNoGearSlotTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -85,9 +117,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RPGCharacterTest.compareTo_Player2Wins" />
-        <item itemvalue="JUnit.RPGCharacterTest.equipCombineHandGear_Success" />
-        <item itemvalue="JUnit.RPGCharacterTest.equipCombineFootGear_Success" />
+        <item itemvalue="JUnit.RPGCharacterTest.hasGearSlotTest" />
+        <item itemvalue="JUnit.RPGCharacterTest.hasNoGearSlotTest" />
+        <item itemvalue="JUnit.GearTest.testCombineHandGear" />
+        <item itemvalue="JUnit.BattleTest.testInvalidItemList" />
+        <item itemvalue="JUnit.BattleTest.testBattleResult" />
       </list>
     </recent_temporary>
   </component>
@@ -132,13 +166,26 @@
       <option name="project" value="LOCAL" />
       <updated>1701846129431</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="finished the battle">
+      <option name="closed" value="true" />
+      <created>1701902876213</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701902876213</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="built gear and character" />
     <MESSAGE value="update character and gear with better tostring method" />
     <MESSAGE value="change the character name and complete driver class" />
-    <option name="LAST_COMMIT_MESSAGE" value="change the character name and complete driver class" />
+    <MESSAGE value="finished the battle" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished the battle" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

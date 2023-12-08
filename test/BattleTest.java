@@ -1,6 +1,7 @@
-import gear.*;
+import battle.Battle;
 import character.*;
-import battle.*;
+import gear.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,88 +9,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
-public class BattleMethodsTest {
+public class BattleTest {
 
-    private RPGCharacter player1;
+    private RPGCharacter character1;
+    private RPGCharacter character2;
     private List<Gear> availableItems;
 
     @Before
     public void setUp() {
-        player1 = new RPGCharacterImpl("Player1", 5, 5);
-
+        // Initialize test data before each test method
+        character1 = new RPGCharacterImpl("Player1", 2, 2);
+        character2 = new RPGCharacterImpl("Player2", 2, 2);
         availableItems = new ArrayList<>();
-        availableItems.add(new HeadGear("Head", "Helmet1", 2));
-        availableItems.add(new HandGear("Hand", "Glove1", 3));
-        availableItems.add(new FootGear("Foot", "Boot1", 1, 2));
-        availableItems.add(new HeadGear("Head", "Helmet2", 1));
-        availableItems.add(new HandGear("Hand", "Glove2", 2));
-        availableItems.add(new FootGear("Foot", "Boot2", 3, 1));
-        availableItems.add(new HeadGear("Head", "Helmet3", 3));
-        availableItems.add(new HandGear("Hand", "Glove3", 1));
-        availableItems.add(new FootGear("Foot", "Boot3", 2, 3));
+        availableItems.add(new HeadGear("adj1", "Helmet", 10));
+        availableItems.add(new HandGear("adj1", "Sword", 5));
+        availableItems.add(new FootGear("adj1", "Boots", 0, 5));
+        availableItems.add(new HeadGear("adj2", "Helmet", 7));
+        availableItems.add(new HandGear("adj2", "Sword", 7));
+        availableItems.add(new FootGear("adj2", "Boots", 3, 4));
+        availableItems.add(new HeadGear("adj3", "Helmet", 3));
+        availableItems.add(new HandGear("adj3", "Sword", 7));
+        availableItems.add(new FootGear("adj3", "Boots", 7, 5));
+        availableItems.add(new HandGear("adj4", "Sword", 1));
+        availableItems.add(new FootGear("adj4", "Boots", 8, 1));
+        availableItems.add(new HandGear("adj5", "Sword", 3));
+        availableItems.add(new FootGear("adj5", "Boots", 2, 1));
+        availableItems.add(new HandGear("adj6", "Sword", 5));
+        availableItems.add(new FootGear("adj6", "Boots", 5, 5));
+        availableItems.add(new HandGear("adj7", "Sword", 8));
+        availableItems.add(new FootGear("adj7", "Boots", 1, 5));
+        availableItems.add(new HandGear("adj8", "Sword", 3));
+        availableItems.add(new FootGear("adj8", "Boots", 6, 4));
+        availableItems.add(new HeadGear("adj9", "Helmet", 7));
     }
 
     @Test
-    public void testPickItem() {
-        Battle battle = new Battle(player1, null, availableItems);
-        Gear chosenItem = availableItems.get(0);
+    public void testBattleResult() {
+        // Create a battle.Battle object with the initialized data
+        Battle battle = new Battle(character1, character2, availableItems);
 
-        battle.pickItem(player1);
+        // Start the battle
+        battle.startBattle();
 
-        assertTrue(player1.getEquippedHeadGear() == chosenItem ||
-                player1.getEquippedHandGears().contains(chosenItem) ||
-                player1.getEquippedFootGears().contains(chosenItem));
-        assertTrue(!availableItems.contains(chosenItem));
+        // Assert the result based on your logic
+        int damage1 = character1.getTotalAttackStat() - character2.getTotalDefenseStat();
+        int damage2 = character2.getTotalAttackStat() - character1.getTotalDefenseStat();
+
+
+        assertEquals(2, battle.getWinner(damage1, damage2));
+
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidItemList() {
+        availableItems.remove(0);
+        Battle battle = new Battle(character1, character2, availableItems);
+
     }
 
-    @Test
-    public void testSortItems() {
-        Battle battle = new Battle(player1, null, availableItems);
-
-        // Manually sort items based on the specified rules
-        availableItems.sort((item1, item2) -> {
-            if (player1.hasHeadGearSlot() && item1 instanceof HeadGear && item2 instanceof HeadGear) {
-                return Battle.compareItems(item1, item2);
-            } else if (player1.hasHandGearSlot() && item1 instanceof HandGear && item2 instanceof HandGear) {
-                return Battle.compareItems(item1, item2);
-            } else if (player1.hasFootGearSlot() && item1 instanceof FootGear && item2 instanceof FootGear) {
-                return Battle.compareItems(item1, item2);
-            } else {
-                return Battle.compareItems(item1, item2);
-            }
-        });
-
-        // Compare manually sorted items with items sorted by the method
-        List<Gear> manuallySortedItems = new ArrayList<>(availableItems);
-        battle.sortItems(player1);
-
-        assertEquals(manuallySortedItems, availableItems);
-    }
-
-    @Test
-    public void testCompareItems() {
-        HeadGear headGear1 = new HeadGear("Head", "Helmet1", 2);
-        HeadGear headGear2 = new HeadGear("Head", "Helmet2", 1);
-        HandGear handGear1 = new HandGear("Hand", "Glove1", 3);
-        HandGear handGear2 = new HandGear("Hand", "Glove2", 2);
-        FootGear footGear1 = new FootGear("Foot", "Boot1", 1, 2);
-        FootGear footGear2 = new FootGear("Foot", "Boot2", 3, 1);
-
-        // Test when attack strength is different
-        assertEquals(-1, Battle.compareItems(headGear1, headGear2));
-        assertEquals(-1, Battle.compareItems(handGear1, handGear2));
-        assertEquals(-1, Battle.compareItems(footGear1, footGear2));
-
-        // Test when attack strength is the same, but defense strength is different
-        assertEquals(-1, Battle.compareItems(headGear1, headGear2));
-        assertEquals(-1, Battle.compareItems(handGear1, handGear2));
-        assertEquals(-1, Battle.compareItems(footGear1, footGear2));
-
-        // Test when attack and defense strength are the same, randomly choose
-        assertEquals(-1, Battle.compareItems(headGear1, headGear2));
-        assertEquals(-1, Battle.compareItems(handGear1, handGear2));
-        assertEquals(-1, Battle.compareItems(footGear1, footGear2));
-    }
 }

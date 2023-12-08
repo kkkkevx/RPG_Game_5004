@@ -33,6 +33,9 @@ public class RPGCharacterImpl implements RPGCharacter {
      * @param baseDefenseStat  The base defense stat of the character.
      */
     public RPGCharacterImpl(String name, int baseAttackStat, int baseDefenseStat) {
+        if (baseAttackStat < 0 || baseDefenseStat < 0){
+            throw  new IllegalArgumentException("Character base stat shoube be higher than 0");
+        }
         this.name = name;
         this.baseAttackStat = baseAttackStat;
         this.baseDefenseStat = baseDefenseStat;

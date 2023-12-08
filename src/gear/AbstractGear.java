@@ -6,7 +6,7 @@ package gear;
  * prefix, name, attack stat, and defense stat. It also defines methods for creating
  * and combining gears.
  */
-public abstract class AbstractGear implements Gear {
+public abstract class AbstractGear implements Gear{
 
     // Common properties for all gears
     private String prefix;
@@ -127,5 +127,18 @@ public abstract class AbstractGear implements Gear {
     @Override
     public String toString() {
         return prefix + " " + name;
+    }
+
+    @Override
+    public int compareTo(Gear other) {
+        if (this.attackStat > other.getAttackStat()) {
+            return 1;
+        }
+        else if (this.attackStat < other.getAttackStat()) {
+            return -1;
+        }
+        else { // if (this.attackStat == other.getAttackStat())
+            return Integer.compare(this.defenseStat, other.getDefenseStat());
+        }
     }
 }

@@ -17,6 +17,25 @@ public class RPGCharacterTest {
     }
 
     @Test
+    public void hasGearSlotTest() {
+        player1.equip(new FootGear("1","1",0,0));
+
+        assertEquals(true, player1.hasFootGearSlot());
+        assertEquals(true, player1.hasHandGearSlot());
+        assertEquals(true, player1.hasHeadGearSlot());
+
+    }
+
+    @Test
+    public void hasNoGearSlotTest() {
+        player1.equip(new HeadGear("1","1",0));
+        player1.equip(new HeadGear("1","1",0));
+
+        assertEquals(false, player1.hasHeadGearSlot());
+
+    }
+
+    @Test
     public void equipHeadGear_Success() {
         Gear headGear = new HeadGear("Head", "Helmet", 2);
         player1.equip(headGear);

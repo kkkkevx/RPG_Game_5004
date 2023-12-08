@@ -1,7 +1,6 @@
-import battle.*;
 import character.*;
+import battle.*;
 import gear.*;
-
 
 import java.util.ArrayList;
 import java.util.List;
