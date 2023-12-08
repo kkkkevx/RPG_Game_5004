@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="245c1979-9808-491e-9717-5c8ba9c14ce6" name="Changes" comment="finished the battle">
-      <change afterPath="$PROJECT_DIR$/res/5004_lab2_RPG_old.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    <list default="true" id="245c1979-9808-491e-9717-5c8ba9c14ce6" name="Changes" comment="finished everything and fix the problem in sorting gear algo">
       <change beforePath="$PROJECT_DIR$/src/battle/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/battle/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/character/RPGCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/character/RPGCharacterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/character/RPGCharacterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gear/AbstractGear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gear/AbstractGear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gear/Gear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gear/Gear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/BattleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/BattleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/RPGCharacterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/RPGCharacterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701902876213</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="finished everything and fix the problem in sorting gear algo">
+      <option name="closed" value="true" />
+      <created>1701994989422</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701994989422</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -182,7 +181,8 @@
     <MESSAGE value="update character and gear with better tostring method" />
     <MESSAGE value="change the character name and complete driver class" />
     <MESSAGE value="finished the battle" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished the battle" />
+    <MESSAGE value="finished everything and fix the problem in sorting gear algo" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished everything and fix the problem in sorting gear algo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

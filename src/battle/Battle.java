@@ -5,7 +5,7 @@ import character.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 /**
  * The battle.Battle class represents a turn-based battle between two RPG characters.
@@ -24,8 +24,8 @@ public class Battle {
     /**
      * Constructs a battle.Battle object with two RPG characters and a list of available items.
      *
-     * @param RPGCharacter1 The first RPG character participating in the battle.
-     * @param RPGCharacter2 The second RPG character participating in the battle.
+     * @param RPGCharacter1  The first RPG character participating in the battle.
+     * @param RPGCharacter2  The second RPG character participating in the battle.
      * @param availableItems The list of available items that characters can choose from during the battle.
      */
     public Battle(RPGCharacter RPGCharacter1, RPGCharacter RPGCharacter2, List<Gear> availableItems) {
@@ -48,7 +48,6 @@ public class Battle {
             pickItem(RPGCharacter2);
             System.out.println();
         }
-
 
 
         // Determine the winner based on damage calculation
@@ -80,7 +79,7 @@ public class Battle {
      */
     private void pickItem(RPGCharacter RPGCharacter) {
         // Sort available items based on the specified rules
-        Gear chosenItem = chooseItem(RPGCharacter);
+        Gear chosenItem = findBestItem(RPGCharacter);
 
         System.out.println(RPGCharacter.getName() + " is picking up " + chosenItem.getClass().getSimpleName() +
                 ": " + chosenItem.getPrefix() + " " + chosenItem.getName() +
@@ -94,8 +93,17 @@ public class Battle {
         availableItems.remove(chosenItem);
     }
 
-    public Gear chooseItem(RPGCharacter inChar) {
-
+    /**
+     * Method   `chooseItem` determines which gear is to be chosen by the character
+     *            during their turn, based on 1) whether that character has an open
+     *            slot for a type of gear, 2) which gear has the highest attack,
+     *            and 3) which gear has the highest defense. The gear chosen is
+     *            equipped to the character and removed from itemsList. If itemsList
+     *            is empty when method is called, throw an IllegalStateException.
+     * @param   'inChar'      --    (RPGCharacter)    the character choosing the item
+     * @returns  Gear         --                      the best gear
+     */
+    public Gear findBestItem(RPGCharacter inChar) {
 
 
         // Instantiate array lists to hold specific gear types
@@ -107,11 +115,9 @@ public class Battle {
         for (Gear gear : availableItems) {
             if (gear instanceof HeadGear) {
                 headGearList.add(gear);
-            }
-            else if (gear instanceof HandGear) {
+            } else if (gear instanceof HandGear) {
                 handGearList.add(gear);
-            }
-            else {
+            } else {
                 footGearList.add(gear);
             }
         }
@@ -141,25 +147,16 @@ public class Battle {
         }
 
         // Find the gear with the best stats in the candidatesList
-        return findBestGear(candidatesList);
-
-    }
-
-    /* -----------------------------------------------------------------------------
-     * Method   `findBestGear` determines which Gear obj in a list of Gear has the
-     *            highest stats, and that obj
-     * @param   'inList'      --    (List<Gear>)    the list of Gear to parse from
-     * @returns  None
-     * ----------------------------------------------------------------------------*/
-    private Gear findBestGear(List<Gear> inList) {
-        Gear maxStatsGear = inList.get(0);
-        for (Gear gear: inList) {
+        Gear maxStatsGear = candidatesList.get(0);
+        for (Gear gear : candidatesList) {
             if (gear.compareTo(maxStatsGear) > 0) {
                 maxStatsGear = gear;
             }
         }
         return maxStatsGear;
+
     }
+
 
     /**
      * Calculates the damage inflicted by an attacker on a defender based on their stats.
@@ -174,7 +171,7 @@ public class Battle {
         return Math.max(0, damage);
     }
 
-    public int getWinner(int damage1, int damage2){
+    public int getWinner(int damage1, int damage2) {
         if (damage1 > damage2) {
             System.out.println(RPGCharacter1.getName() + " wins!");
             return 1;
